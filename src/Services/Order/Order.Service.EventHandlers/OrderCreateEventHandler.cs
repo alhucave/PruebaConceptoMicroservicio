@@ -64,7 +64,7 @@ namespace Order.Service.EventHandlers
                 _logger.LogInformation($"--- Order {entry.OrderId} was created");
 
                 // 04. Update Stocks
-                _logger.LogInformation("--- Updating stock");
+                _logger.LogInformation("--- Updating stock  Proxy");
                 await _catalogProxy.UpdateStockAsync(new ProductInStockUpdateStockCommand
                 {
                     Items = notification.Items.Select(x => new ProductInStockUpdateItem

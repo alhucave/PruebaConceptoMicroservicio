@@ -55,7 +55,7 @@ namespace Order.Api
             services.Configure<ApiUrls>(opts => Configuration.GetSection("ApiUrls").Bind(opts));
 
             // Proxies
-            services.AddHttpClient<ICatalogProxy, CatalogProxy>();
+            services.AddSingleton<ICatalogProxy, CatalogProxy>();
 
             // Event handlers
             services.AddMediatR(Assembly.Load("Order.Service.EventHandlers"));

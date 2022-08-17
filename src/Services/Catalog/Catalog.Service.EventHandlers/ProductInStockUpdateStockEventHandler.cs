@@ -18,6 +18,8 @@ namespace Catalog.Service.EventHandlers
     {
         private readonly ApplicationDbContext _context;
         private readonly ILogger<ProductInStockUpdateStockEventHandler> _logger;
+        private static bool _falla = false;
+        private static readonly Random Random = new Random();
 
         public ProductInStockUpdateStockEventHandler(
             ApplicationDbContext context,
@@ -29,6 +31,20 @@ namespace Catalog.Service.EventHandlers
 
         public async Task Handle(ProductInStockUpdateStockCommand notification, CancellationToken cancellationToken)
         {
+            //Código para generar fallas aleatorias 
+            if (Random.Next(1, 3) == 1)
+            {
+                _falla = true;
+            }
+
+            if (_falla)
+            {
+                _falla = false;
+                throw new Exception("Courrio un error");
+
+            }
+
+
             _logger.LogInformation("--- ProductInStockUpdateStockCommand started");
 
             var products = notification.Items.Select(x => x.ProductId);
