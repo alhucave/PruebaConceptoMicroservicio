@@ -15,6 +15,10 @@ namespace Clients.WebClient.Controllers
     {
         private readonly string _authenticationUrl;
 
+        /// <summary>
+        /// vamos
+        /// </summary>
+        /// <param name="configuration"></param>
         public AccountController(IConfiguration configuration)
         {
             _authenticationUrl = configuration.GetValue<string>("AuthenticationUrl");
