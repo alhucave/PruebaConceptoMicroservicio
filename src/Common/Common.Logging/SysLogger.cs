@@ -13,12 +13,18 @@ namespace Common.Logging
         private int _port;
         private readonly Func<string, LogLevel, bool> _filter;
 
+        /// <summary>
+        /// que es esta lucura
+        /// </summary>
+        /// <param name="host"></param>
+        /// <param name="port"></param>
+        /// <param name="filter"></param>
         public SyslogLoggerProvider(string host, int port, Func<string, LogLevel, bool> filter)
         {
             _host = host;
             _port = port;
             _filter = filter;
-        }
+        } 
 
         public ILogger CreateLogger(string categoryName)
         {

@@ -31,21 +31,21 @@ namespace Order.Service.EventHandlers
 
         public async Task Handle(OrderCreateCommand notification, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("--- New order creation started");
+            //_logger.LogInformation("--- New order creation started");
             var entry = new Domain.Order();
 
             using (var trx = await _context.Database.BeginTransactionAsync()) 
             {
                 // 01. Prepare detail
-                _logger.LogInformation("--- Preparing detail");
+                //_logger.LogInformation("--- Preparing detail");
                 PrepareDetail(entry, notification);
 
                 // 02. Prepare header
-                _logger.LogInformation("--- Preparing header");
+                //_logger.LogInformation("--- Preparing header");
                 PrepareHeader(entry, notification);
 
                 // 03. Create order
-                _logger.LogInformation("--- Creating order");
+                //_logger.LogInformation("--- Creating order");
                 await _context.AddAsync(entry);
 
 
@@ -78,7 +78,7 @@ namespace Order.Service.EventHandlers
                 await trx.CommitAsync();
             }
 
-            _logger.LogInformation("--- New order creation ended");
+            //_logger.LogInformation("--- New order creation ended");
         }
 
         private void PrepareDetail(Domain.Order entry, OrderCreateCommand notification) 

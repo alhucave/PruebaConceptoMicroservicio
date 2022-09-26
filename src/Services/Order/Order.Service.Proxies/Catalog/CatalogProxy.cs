@@ -29,7 +29,7 @@ namespace Order.Service.Proxies.Catalog
                 message => ((int)message.StatusCode) == 429 || (int)message.StatusCode >= 500)
             .WaitAndRetryAsync(2, sleepDurationProvider: retryAttemp =>
             {
-                Console.WriteLine($"Reintentando {retryAttemp}");
+                Console.WriteLine($"Reintentando: {retryAttemp}");
                 return TimeSpan.FromSeconds(Math.Pow(2, retryAttemp)) + TimeSpan.FromMilliseconds(Jitterer.Next(0, 1000));
             });
 

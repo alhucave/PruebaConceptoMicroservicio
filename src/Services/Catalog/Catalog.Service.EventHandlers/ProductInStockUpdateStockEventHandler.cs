@@ -32,7 +32,9 @@ namespace Catalog.Service.EventHandlers
         public async Task Handle(ProductInStockUpdateStockCommand notification, CancellationToken cancellationToken)
         {
             //Código para generar fallas aleatorias 
-            if (Random.Next(1, 3) == 1)
+            var ran = Random.Next(1, 2);
+            _logger.LogInformation($"--- Ramdom" + ran.ToString());
+            if (ran == 1)
             {
                 _falla = true;
             }
@@ -45,12 +47,12 @@ namespace Catalog.Service.EventHandlers
             }
 
 
-            _logger.LogInformation("--- ProductInStockUpdateStockCommand started");
+            //_logger.LogInformation("--- ProductInStockUpdateStockCommand started");
 
             var products = notification.Items.Select(x => x.ProductId);
             var stocks = await _context.Stocks.Where(x => products.Contains(x.ProductId)).ToListAsync();
 
-            _logger.LogInformation("--- Retrieve products from database");
+            //_logger.LogInformation("--- Retrieve products from database");
 
             foreach (var item in notification.Items) 
             {
