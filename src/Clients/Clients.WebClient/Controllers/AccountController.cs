@@ -16,7 +16,7 @@ namespace Clients.WebClient.Controllers
         private readonly string _authenticationUrl;
 
         /// <summary>
-        /// Estoy en develop y voy para master
+        /// Estoy en develop y voy para master 2
         /// </summary>
         /// <param name="configuration"></param>
         public AccountController(IConfiguration configuration)
